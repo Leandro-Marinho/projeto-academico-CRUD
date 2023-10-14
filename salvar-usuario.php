@@ -1,3 +1,14 @@
+<h1>Selecionar usuário pelo nº do CPF</h1>
+<form action="?page=salvar" method="POST">
+    <input type="hidden" name="acao" value="selecionar-usuario">
+        <div class="mb-3"> 
+        <label>Insira o número do CPF</label>
+            <input type="number" name="cpf" class="form-control">  <!--  mudei para CPF   -->
+        </div>
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary">Selecionar</button>
+        </div>
+</form>
 <?php
     switch ($_REQUEST["acao"]) {
         case 'cadastrar':
@@ -14,6 +25,35 @@
                 }else{
                     print "<script>alert('Não foi possível cadastrar');</script>";
                 }
-                break;
+        break;
+
+        case 'selecionar-usuario':
+            $nome = $_POST["cpf"];
+            $sql = "SELECT * FROM usuario WHERE cpf= '{$nome}'";
+            $res = $conn->query($sql);
+            $qtd = $res->num_rows;
+                if($qtd > 0) {
+                    print "<table class='table table-hover table-striped table-bordered'>";
+                    print "<tr>";
+                    print "<th>#</th>";
+                    print "<th>Nome</th>";
+                    print "<th>E-mail</th>";
+                    print "<th>CPF</th>";
+                    print "<th>Data de nascimento</th>";
+                    print "</tr>";
+                    while($row = $res->fetch_object()) {
+                        print "<tr>";
+                        print "<td>".$row->id."</td>";
+                        print "<td>".$row->nome."</td>";
+                        print "<td>".$row->email."</td>";
+                        print "<td>".$row->cpf."</td>";
+                        print "<td>".$row->data_nasc."</td>";
+                        print "</tr>";
+                    }
+                    print "</table>";
+                }else{
+                    print "<p class='alert alert-danger'>Não encontrou resultados!</p>";
+                }
+        break;
     }
 ?>

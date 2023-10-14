@@ -25,6 +25,12 @@
                 <li class="nav-item">
                   <a class="nav-link" href="?page=novo">Cadastrar Usuário</a>
                 </li>
+                <li class="nav-item">
+                <a class="nav-link" href="?page=listar">Listar Usuários</a>
+                </li> 
+                <li class="nav-item">
+                <a class="nav-link" href="?page=selecionar">Selecionar Usuário</a>
+                </li> 
             </ul>
           </div>
       </div>
@@ -40,6 +46,12 @@
                     break;
                 case "salvar":
                     include("salvar-usuario.php");
+                    break;
+                case "listar":
+                    include("listar-usuario.php");
+                    break;
+                case "selecionar":
+                    include("selecionar-usuario.php");
                     break;
                 case "mensagem":
                     include("msg-outro-usuario.php");
