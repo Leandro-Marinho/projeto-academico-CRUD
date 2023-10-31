@@ -55,5 +55,27 @@
                     print "<p class='alert alert-danger'>Não encontrou resultados!</p>";
                 }
         break;
+
+        case 'editar':
+            $nome = $_POST["nome"];
+            $email = $_POST["email"];
+            $cpf = $_POST["cpf"];
+            $data_nasc = $_POST["data_nasc"];
+            $sql = "UPDATE usuario SET
+                        nome='{$nome}',
+                        email='{$email}',
+                        cpf='{$cpf}',
+                        data_nasc='{$data_nasc}'
+                    WHERE
+                        id=".$_REQUEST["id"];
+            $res = $conn -> query ($sql);
+                if ($res==true) {
+                    print "<script>alert('Editado com sucesso!');</script>";
+                    print "<script>location.href='?page=listar';</script>";
+                }else{
+                    print "<script>alert('Não foi possível editar');</script>";
+                    print "<script>location.href='?page=listar';</script>";
+                }
+        break;
     }
 ?>

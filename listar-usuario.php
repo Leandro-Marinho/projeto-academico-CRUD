@@ -12,6 +12,7 @@ $qtd = $res->num_rows;
         print "<th>E-mail</th>";
         print "<th>CPF</th>";
         print "<th>Data de nascimento</th>";
+        print "<th>Editar</th>";
         print "</tr>";
             while($row = $res->fetch_object()) {
                 print "<tr>";
@@ -20,6 +21,10 @@ $qtd = $res->num_rows;
                 print "<td>".$row->email."</td>";
                 print "<td>".$row->cpf."</td>";
                 print "<td>".$row->data_nasc."</td>";
+                print "<td>
+                <button onclick=\"location.href='?page=editar&id=".$row->id."';\" class='btn btn-success'>Editar</button>
+                </td>";
+                print "</tr>";
             }
         print "</table>";
     }else{
